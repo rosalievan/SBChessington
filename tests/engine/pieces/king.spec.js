@@ -1,4 +1,8 @@
+import 'chai/register-should';
 import King from '../../../src/engine/pieces/king';
+import Board from '../../../src/engine/board';
+import Player from '../../../src/engine/player';
+import Square from '../../../src/engine/square';
 
 describe('King', () => {
 
@@ -27,6 +31,7 @@ describe('King', () => {
 
         moves.should.have.length(8);
     });
+<<<<<<< HEAD
 
     it('cannot leave the board', () => {
         const king = new King(Player.WHITE);
@@ -38,4 +43,6 @@ describe('King', () => {
 
         moves.should.deep.have.members(expectedMoves);
     });
+=======
+>>>>>>> 38202d9 (Added a test for king movement)
 });
