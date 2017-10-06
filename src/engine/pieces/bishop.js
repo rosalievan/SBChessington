@@ -33,9 +33,10 @@ export default class Bishop extends Piece {
                         else {
                             break
                         }
-                }}
+                }
             }
-            return output;
+        }
+        return output;
         } 
     
     }
