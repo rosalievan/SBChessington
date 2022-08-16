@@ -10,7 +10,6 @@ export default class Pawn extends Piece {
 
     getAvailableMoves(board) {
         let location = board.findPiece(this)
-        console.log(location)
         
         // white pawns
         if (this.player === Player.WHITE) {
