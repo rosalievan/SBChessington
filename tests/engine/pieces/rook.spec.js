@@ -10,7 +10,7 @@ describe('Rook', () => {
     let board;
     beforeEach(() => board = new Board());
 
-    it('can move laterally', () => {
+    xit('can move laterally', () => {
         const rook = new Rook(Player.WHITE);
         board.setPiece(Square.at(1, 2), rook);
 
@@ -26,7 +26,7 @@ describe('Rook', () => {
         moves.should.deep.include.members(expectedMoves);
     });
 
-    it('cannot make any other moves', () => {
+    xit('cannot make any other moves', () => {
         const rook = new Rook(Player.WHITE);
         board.setPiece(Square.at(1, 2), rook);
 
@@ -35,7 +35,7 @@ describe('Rook', () => {
         moves.should.have.length(14);
     });
 
-    it('cannot move through friendly pieces', () => {
+    xit('cannot move through friendly pieces', () => {
         const rook = new Rook(Player.WHITE);
         const friendlyPiece = new Pawn(Player.WHITE);
         board.setPiece(Square.at(4, 4), rook);
@@ -46,7 +46,7 @@ describe('Rook', () => {
         moves.should.not.deep.include(Square.at(4, 7));
     });
 
-    it('cannot move through opposing pieces', () => {
+    xit('cannot move through opposing pieces', () => {
         const rook = new Rook(Player.WHITE);
         const opposingPiece = new Pawn(Player.BLACK);
         board.setPiece(Square.at(4, 4), rook);
