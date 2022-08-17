@@ -24,6 +24,14 @@ export default class Board {
         return this.board[square.row][square.col];
     }
 
+    checkIfEmpty(row,column){
+        if(!(this.getPiece(Square.at(row,column)))){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     
 
     findPiece(pieceToFind) {

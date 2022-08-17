@@ -8,14 +8,7 @@ export default class Pawn extends Piece {
         super(player);
     }
 
-    checkIfEmpty(row,column,board){
-        if(!(board.getPiece(Square.at(row,column)))){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
+    
     getAvailableMoves(board) {
         let location = board.findPiece(this);
         let row=location.row;
@@ -27,15 +20,15 @@ export default class Pawn extends Piece {
             for (let i = 0; i < GameSettings.BOARD_SIZE; i++) {
                 
                 if (location.row == 1){
-                    if(this.checkIfEmpty(row + 1, col,board)){
+                    if(board.checkIfEmpty(row + 1, col)){
                         output.push(Square.at(row + 1, col));
                     }
-                    if(this.checkIfEmpty(row + 1, col,board) && this.checkIfEmpty(row + 2, col,board)){ 
+                    if(board.checkIfEmpty(row + 1, col) && board.checkIfEmpty(row + 2, col)){ 
                         output.push(Square.at(row + 2, col));
                     }
                     return output;
                 }else {
-                    if(this.checkIfEmpty(row + 1, col,board)){
+                    if(board.checkIfEmpty(row + 1, col)){
                         output.push(Square.at(row + 1, col));
                     }
                     return output;
@@ -47,15 +40,15 @@ export default class Pawn extends Piece {
         else {
             for (let i = 0; i < GameSettings.BOARD_SIZE; i++) {
               if (location.row == 6){
-                 if(this.checkIfEmpty(row - 1, col,board)){
+                 if(board.checkIfEmpty(row - 1, col)){
                     output.push(Square.at(row - 1, col));
                 }
-                if(this.checkIfEmpty(row - 1, col,board) && this.checkIfEmpty(row -2, col,board)){ 
+                if(board.checkIfEmpty(row - 1, col) && board.checkIfEmpty(row -2, col)){ 
                     output.push(Square.at(row - 2, col));
                 }
                 return output;
               } else {
-                if(this.checkIfEmpty(row - 1, col,board)){
+                if(board.checkIfEmpty(row - 1, col)){
                     output.push(Square.at(row - 1, col));
                 }
                 return output;
