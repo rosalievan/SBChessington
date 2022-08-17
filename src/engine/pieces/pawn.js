@@ -32,8 +32,8 @@ export default class Pawn extends Piece {
                         if(board.checkIfEmpty(newrow, col)){
                             output.push(Square.at(newrow, col));
                         }
-                        if(board.checkIfEmpty(newrow, col) && board.checkIfEmpty(newrow + 1 * k[1], col)){ 
-                            output.push(Square.at(newrow + 1 * k[1], col));
+                        if(board.checkIfEmpty(newrow, col) && board.checkIfEmpty(newrow + k[1], col)){ 
+                            output.push(Square.at(newrow + k[1], col));
                         }
                         return output
 

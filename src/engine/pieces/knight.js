@@ -14,19 +14,19 @@ export default class Knight extends Piece {
         let row=location.row;
         let col=location.col;
 
-        let move1 = [2, -2];
-        let move2 = [1, -1];
+        let size = GameSettings.BOARD_SIZE
 
-        for (let i in move2){
-            for (let j in move1){
-                if ((row + move2[i] < 8 )&& (row +move2[i] >= 0) && (col + move1[j] < 8) && (col +move1[j] >=0)){
-                output.push(Square.at(row + move2[i], col + move1[j]))}
-                if ((row + move1[j] < 8 ) && (row +move1[j] >= 0) && (col + move2[i]< 8) && (col +move2[i] >=0)){
-                output.push(Square.at(row + move1[j], col + move2[i]))}
+        let moves = [[1,2], [1, -2], [2, 1], [2,-1], [-1, 2], [-1, -2], [-2, 1], [-2, -1]]
+        
+        for (let i in moves){
+            let combination = moves[i]
+                let suggestedsquare1 = Square.at(row + combination[0], col + combination[1])
+
+                if (suggestedsquare1.isPossibleSquare()){
+                    output.push(suggestedsquare1)
+                }
             }
-        }
-
+        
         return output
-         
-    }
-}
+
+}}
