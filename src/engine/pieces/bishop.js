@@ -8,26 +8,25 @@ export default class Bishop extends Piece {
         super(player);
     }
 
-       getAvailableMoves(board) {
-            let location = board.findPiece(this);
-            let moves=[];
 
-            for (let i = 1; i < GameSettings.BOARD_SIZE; i++) {
-                if((location.row +i < 8) && (location.col - i >=0)){
-                    moves.push(Square.at(location.row + i, location.col - i));
-                }
-                if((location.row - i >= 0) && (location.col + i < 8)){ 
-                    moves.push(Square.at(location.row - i, location.col + i));
-                }
-                if((location.row - i >= 0) && (location.col - i >=0)){
-                    moves.push(Square.at(location.row - i, location.col - i));
-                }
-                if((location.row + i <8 ) && (location.col + i < 8)){
-                    moves.push(Square.at(location.row + i, location.col + i));
-                }
+       getAvailableMoves(board) {
+        let location = board.findPiece(this);
+        let row=location.row;
+        let col=location.col;
+        let output = [];
+
+        let size = GameSettings.BOARD_SIZE
+        let multipliers = [[1, 1], [1, -1], [-1, -1], [-1,1]]
+ 
+
+            for (let i = 1; i < size; i++) {
+                for (let j in multipliers){
+                let suggestedsquare = Square.at(row + i * multipliers[j][0], col + i * multipliers[j][1])
+                    if (suggestedsquare.isPossibleSquare()){
+                        output.push(suggestedsquare)
+                }}
             }
-            
-            return moves;
+            return output;
         } 
     
     }

@@ -8,6 +8,14 @@ export default class Square {
         return new Square(row, col);
     }
 
+    isPossibleSquare(){
+        if (this.row >= 0 && this.row < 8 && this.col >= 0 && this.col < 8){
+            return true
+        } else {
+            return false
+        }
+    }
+
     equals(otherSquare) {
         return !!otherSquare && this.row === otherSquare.row && this.col === otherSquare.col;
     }
