@@ -23,23 +23,25 @@ export default class Pawn extends Piece {
             let k = pawnoptions[i]
 
             if (this.player == k[2]) { 
-                for (let j = 0; j < size; j++) {
+                for (let j = 0; j < size; j++)
+                {
+                    let newrow = row + k[1]
                     
+                    if (row == k[0]){
 
-                    if (location.row == k[0]){
-                        console.log('x')
-                        if(board.checkIfEmpty(row + k[1], col)){
-                            console.log('o')
-                            output.push(Square.at(row + k[1], col));
+                        if(board.checkIfEmpty(newrow, col)){
+                            output.push(Square.at(newrow, col));
                         }
-                        if(board.checkIfEmpty(row + k[1], col) && board.checkIfEmpty(row + 2 * k[1], col)){ 
-                            output.push(Square.at(row + 2 * k[1], col));
+                        if(board.checkIfEmpty(newrow, col) && board.checkIfEmpty(newrow + 1 * k[1], col)){ 
+                            output.push(Square.at(newrow + 1 * k[1], col));
                         }
                         return output
 
                     } else {
-                        if (board.checkIfEmpty(row + k[1], col)) {
-                            output.push(Square.at(row + k[1], col));
+                        if (board.checkIfEmpty(newrow, col)) {
+
+                            output.push(Square.at(newrow, col));
+
                     }   return output
                     
         }}}}
