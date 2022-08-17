@@ -11,20 +11,22 @@ export default class Knight extends Piece {
     getAvailableMoves(board) {
         let output = []
         let location = board.findPiece(this);
+        let row=location.row;
+        let col=location.col;
 
-        let list0 = [1, -1]
-        let list = [2, -2]
+        let move1 = [2, -2];
+        let move2 = [1, -1];
 
-        for (let i in list0){
-            for (let j in list){
-                if ((location.row + list0[i] < 8 )&& (location.row +list0[i] >= 0) && (location.col + list[j] < 8) && (location.col +list[j] >=0)){
-                output.push(Square.at(location.row + list0[i], location.col + list[j]))}
-                if ((location.row + list[j] < 8 ) && (location.row +list[j] >= 0) && (location.col + list0[i]< 8) && (location.col +list0[i] >=0)){
-                output.push(Square.at(location.row + list[j], location.col + list0[i]))}
+        for (let i in move2){
+            for (let j in move1){
+                if ((row + move2[i] < 8 )&& (row +move2[i] >= 0) && (col + move1[j] < 8) && (col +move1[j] >=0)){
+                output.push(Square.at(row + move2[i], col + move1[j]))}
+                if ((row + move1[j] < 8 ) && (row +move1[j] >= 0) && (col + move2[i]< 8) && (col +move2[i] >=0)){
+                output.push(Square.at(row + move1[j], col + move2[i]))}
             }
         }
 
         return output
-
-            
-}}
+         
+    }
+}
