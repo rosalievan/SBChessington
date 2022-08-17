@@ -35,16 +35,30 @@ export default class Pawn extends Piece {
                         if(board.checkIfEmpty(newrow, col) && board.checkIfEmpty(newrow + k[1], col)){ 
                             output.push(Square.at(newrow + k[1], col));
                         }
-                        return output
+                        break
 
                     } else {
                         if (board.checkIfEmpty(newrow, col)) {
 
                             output.push(Square.at(newrow, col));
 
-                    }   return output
+                    }   break
                     
         }}}}
+
+        if (this.player == Player.WHITE){
+            let suggestedsquare = Square.at(row+1, col + 1)
+            if (!(board.checkIfEmpty(row + 1, col + 1)) && board.getPiece(suggestedsquare).player != Player.WHITE) {
+                output.push(suggestedsquare)
+            }
+
+            let suggestedsquare2 = Square.at(row+1, col - 1)
+            if (!(board.checkIfEmpty(row + 1, col - 1)) && board.getPiece(suggestedsquare2).player != Player.WHITE) {
+                output.push(suggestedsquare2)
+            }
+        }
+
+        return output
 
 
     
