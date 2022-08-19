@@ -52,7 +52,7 @@ export default class Pawn extends Piece {
                     output.add(suggestedsquare2);} 
                 }
          
-        // 'can move diagonally if there is a piece to take'
+        // 'can move diagonally if there is a piece to take' & cannot take the king
 
             for (let i in parameters.diagonalmoveforward){
 
