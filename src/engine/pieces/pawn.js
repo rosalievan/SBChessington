@@ -2,6 +2,7 @@ import Player from '../player';
 import Square from '../square';
 import Piece from './piece';
 import GameSettings from '../../engine/gameSettings';
+import King from './king';
 
 export default class Pawn extends Piece {
     constructor(player) {
@@ -57,7 +58,9 @@ export default class Pawn extends Piece {
 
                 let suggestedsquare3 = Square.at(newrow , col + parameters.diagonalmoveforward[i])
 
-                if (!(board.checkIfEmpty(suggestedsquare3)) && board.getPiece(suggestedsquare3).player != parameters.playername) {
+                if (!(board.checkIfEmpty(suggestedsquare3)) && 
+                    board.getPiece(suggestedsquare3).player != parameters.playername && 
+                    board.getPiece(suggestedsquare3).name != "King") {
                     output.add(suggestedsquare3)
                 }
             }
