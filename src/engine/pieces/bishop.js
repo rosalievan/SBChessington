@@ -8,7 +8,6 @@ export default class Bishop extends Piece {
         super(player);
     }
 
-
        getAvailableMoves(board) {
         let location = board.findPiece(this);
         let row=location.row;
@@ -17,7 +16,6 @@ export default class Bishop extends Piece {
 
         let size = GameSettings.BOARD_SIZE
         let multipliers = [[1, 1], [1, -1], [-1, -1], [-1,1]]
- 
 
             for (let i = 1; i < size; i++) {
                 for (let j in multipliers){

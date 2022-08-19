@@ -24,8 +24,8 @@ export default class Board {
         return this.board[square.row][square.col];
     }
 
-    checkIfEmpty(row,column){
-        if(!(this.getPiece(Square.at(row,column)))){
+    checkIfEmpty(square){
+        if(!(this.getPiece(square))){
             return true;
         }else{
             return false;
