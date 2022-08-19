@@ -17,23 +17,23 @@ export default class Pawn extends Piece {
         let size = GameSettings.BOARD_SIZE
 
         // 'can move one or two squares up on their first move'
-        // pawnoptions strucure: [startcolumn, moveforward, player, finalrow ]
-        let pawnoptions =  [[1, 1, Player.WHITE, 8], [6, -1, Player.BLACK, 0]]
+        // pawnoptions structure: [startcolumn, moveforward, player, finalrow ]
+        let pawnoptions =  [[1, 1, Player.WHITE, 7], [6, -1, Player.BLACK, 0]]
 
         for (let i in pawnoptions){
             let k = pawnoptions[i]
 
             if (this.player == k[2]) { 
 
-                    let newrow = row + k[1]
-                    
-                    if(row == k[0] && board.checkIfEmpty(newrow, col) && board.checkIfEmpty(newrow + k[1], col)){ 
-                        output.add(Square.at(newrow, col))
-                        output.add(Square.at(newrow + k[1], col));} 
+                let newrow = row + k[1]
+                
+                if (row == k[0] && board.checkIfEmpty(newrow, col) && board.checkIfEmpty(newrow + k[1], col)){ 
+                    output.add(Square.at(newrow, col))
+                    output.add(Square.at(newrow + k[1], col));} 
 
-                    else if(board.checkIfEmpty(newrow, col)){
-                            output.add(Square.at(newrow, col));
-                        }
+                else if ( newrow != k[3] && board.checkIfEmpty(newrow, col)){
+                        output.add(Square.at(newrow, col));
+                    }
                     
         }}
 
@@ -55,5 +55,5 @@ export default class Pawn extends Piece {
             }
         }
         output = Array.from(output)
-        return output  
+        return output
 }}
