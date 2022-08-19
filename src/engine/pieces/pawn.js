@@ -13,38 +13,29 @@ export default class Pawn extends Piece {
         let location = board.findPiece(this);
         let row=location.row;
         let col=location.col;
-        let output = [];
-
+        let output = new Set();
         let size = GameSettings.BOARD_SIZE
-        let pawnoptions =  [[1, 1, Player.WHITE], [6, -1, Player.BLACK]]
 
+        // 'can move one or two squares up on their first move'
+        // pawnoptions strucure: [startcolumn, moveforward, player, finalrow ]
+        let pawnoptions =  [[1, 1, Player.WHITE, 8], [6, -1, Player.BLACK, 0]]
 
         for (let i in pawnoptions){
             let k = pawnoptions[i]
 
             if (this.player == k[2]) { 
-                for (let j = 0; j < size; j++)
-                {
+
                     let newrow = row + k[1]
                     
-                    if (row == k[0]){
+                    if(row == k[0] && board.checkIfEmpty(newrow, col) && board.checkIfEmpty(newrow + k[1], col)){ 
+                        output.add(Square.at(newrow, col))
+                        output.add(Square.at(newrow + k[1], col));} 
 
-                        if(board.checkIfEmpty(newrow, col)){
-                            output.push(Square.at(newrow, col));
+                    else if(board.checkIfEmpty(newrow, col)){
+                            output.add(Square.at(newrow, col));
                         }
-                        if(board.checkIfEmpty(newrow, col) && board.checkIfEmpty(newrow + k[1], col)){ 
-                            output.push(Square.at(newrow + k[1], col));
-                        }
-                        break
-
-                    } else {
-                        if (board.checkIfEmpty(newrow, col)) {
-
-                            output.push(Square.at(newrow, col));
-
-                    }   break
                     
-        }}}}
+        }}
 
         // 'can move diagonally if there is a piece to take'
 
@@ -55,22 +46,14 @@ export default class Pawn extends Piece {
 
                 for (let j in pawnoptions2[i][0]){
                     let suggestedsquare = Square.at(row + pawnoptions2[i][1] , col + pawnoptions2[i][0][j])
+
                     // would be nice to rewrite checkIfEmpty to be more succinct, now its a repetition of the coordinates
                     if (!(board.checkIfEmpty(row + pawnoptions2[i][1] , col + pawnoptions2[i][0][j])) && board.getPiece(suggestedsquare).player != pawnoptions2[i][2]) {
-                        
-                        output.push(suggestedsquare)
+                        output.add(suggestedsquare)
                     }
                 }
             }
-
-            // let suggestedsquare2 = Square.at(row+1, col - 1)
-            // if (!(board.checkIfEmpty(row + 1, col - 1)) && board.getPiece(suggestedsquare2).player != Player.WHITE) {
-            //     output.push(suggestedsquare2)
-            // }
         }
-
-        return output
-
-
-    
+        output = Array.from(output)
+        return output  
 }}
