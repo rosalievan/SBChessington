@@ -42,21 +42,24 @@ export default class Pawn extends Piece {
         let newrow = row + parameters.normalmoveforward
         let suggestedsquare1 = Square.at(newrow,  col)
         let suggestedsquare2 = Square.at(newrow + parameters.normalmoveforward, col)
-        
-        if(board.checkIfEmpty(suggestedsquare1)) {
-            output.add(suggestedsquare1)
-            if (row == parameters.startcolumn && board.checkIfEmpty(suggestedsquare2)){ 
-                output.add(suggestedsquare2);} 
-            }
 
+        if (row != parameters.finalrow){
+            if(board.checkIfEmpty(suggestedsquare1)) {
+                output.add(suggestedsquare1)
+
+                if (row == parameters.startcolumn && board.checkIfEmpty(suggestedsquare2)){ 
+                    output.add(suggestedsquare2);} 
+                }
+         
         // 'can move diagonally if there is a piece to take'
 
-        for (let i in parameters.diagonalmoveforward){
+            for (let i in parameters.diagonalmoveforward){
 
-            let suggestedsquare3 = Square.at(newrow , col + parameters.diagonalmoveforward[i])
+                let suggestedsquare3 = Square.at(newrow , col + parameters.diagonalmoveforward[i])
 
-            if (!(board.checkIfEmpty(suggestedsquare3)) && board.getPiece(suggestedsquare3).player != parameters.playername) {
-                output.add(suggestedsquare3)
+                if (!(board.checkIfEmpty(suggestedsquare3)) && board.getPiece(suggestedsquare3).player != parameters.playername) {
+                    output.add(suggestedsquare3)
+                }
             }
         }
             
