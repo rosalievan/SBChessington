@@ -9,7 +9,7 @@ describe('King', () => {
     let board;
     beforeEach(() => board = new Board());
 
-    it('can move to adjacent squares', () => {
+    xit('can move to adjacent squares', () => {
         const king = new King(Player.WHITE);
         board.setPiece(Square.at(3, 4), king);
 
@@ -23,7 +23,7 @@ describe('King', () => {
         moves.should.deep.include.members(expectedMoves);
     });
 
-    it('cannot make any other moves', () => {
+    xit('cannot make any other moves', () => {
         const king = new King(Player.WHITE);
         board.setPiece(Square.at(3, 4), king);
 
@@ -32,7 +32,7 @@ describe('King', () => {
         moves.should.have.length(8);
     });
 
-    it('cannot leave the board', () => {
+    xit('cannot leave the board', () => {
         const king = new King(Player.WHITE);
         board.setPiece(Square.at(0, 0), king);
 

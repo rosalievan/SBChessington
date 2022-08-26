@@ -9,34 +9,54 @@ export default class Queen extends Piece {
     }
 
     getAvailableMoves(board) {
-        let location = board.findPiece(this)
-        let output = []
+        let location = board.findPiece(this);
+        let row=location.row;
+        let col=location.col;
+        let output = []; 
 
-        for (let i = 0; i < GameSettings.BOARD_SIZE; i++) {
-            if (i != location.row){
-            output.push(
-                Square.at(i, location.col)
-            )}
-
-            if (i != location.col){
-            output.push(
-                Square.at(location.row, i)
-            )
-            }
-
-            if((location.row +i < 8) && (location.col - i >=0) && (i != 0)){
-                output.push(Square.at(location.row + i, location.col - i));
-            }
-            if((location.row - i >= 0) && (location.col + i < 8) && (i != 0)){ 
-                output.push(Square.at(location.row - i, location.col + i));
-            }
-            if((location.row - i >= 0) && (location.col - i >=0) && (i != 0)){
-                output.push(Square.at(location.row - i, location.col - i));
-            }
-            if((location.row + i <8 ) && (location.col + i < 8) && (i != 0)){
-                output.push(Square.at(location.row + i, location.col + i));
+        for (let i =0 ; i<4; i++){
+            for (let j = 1; j <= GameSettings.BOARD_SIZE; j++) {
+                let parameters = [[row+j, col], [row - j, col], [row, col + j], [row, col - j]]
+                let suggestedsquare1 = Square.at(parameters[i][0], parameters[i][1])
+                if(suggestedsquare1.isPossibleSquare()){
+                    if(board.checkIfEmpty(suggestedsquare1)){
+                        output.push(suggestedsquare1);
+                    } 
+                    else if(board.getPiece(suggestedsquare1).player != this.player && board.getPiece(suggestedsquare1).name != "King"){
+                        output.push(suggestedsquare1)
+                        break
+                    }
+                    else {
+                        break
+                    }
+                }
             }
         }
-        return output;
-    }
+
+        let size = GameSettings.BOARD_SIZE
+        let multipliers = [[1, 1], [1, -1], [-1, -1], [-1,1]]
+
+        for (let j in multipliers){
+            for (let i = 1; i < size; i++) {
+                
+                let suggestedsquare = Square.at(row + i * multipliers[j][0], col + i * multipliers[j][1])
+                    if (suggestedsquare.isPossibleSquare()){
+                        if(board.checkIfEmpty(suggestedsquare)){
+                            output.push(suggestedsquare)
+                        }
+                        else if(board.getPiece(suggestedsquare).player != this.player && board.getPiece(suggestedsquare).name != "King"){
+                            output.push(suggestedsquare)
+                            break
+                        }
+
+                        else {
+                            break
+                        }
+                }
+            }
+        }
+        console.log(output)
+        return output
+    } 
+
 }
