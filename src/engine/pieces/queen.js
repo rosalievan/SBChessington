@@ -55,7 +55,6 @@ export default class Queen extends Piece {
                 }
             }
         }
-        console.log(output)
         return output
     } 
 
