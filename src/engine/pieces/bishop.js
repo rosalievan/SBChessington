@@ -17,11 +17,22 @@ export default class Bishop extends Piece {
         let size = GameSettings.BOARD_SIZE
         let multipliers = [[1, 1], [1, -1], [-1, -1], [-1,1]]
 
+        for (let j in multipliers){
             for (let i = 1; i < size; i++) {
-                for (let j in multipliers){
+                
                 let suggestedsquare = Square.at(row + i * multipliers[j][0], col + i * multipliers[j][1])
                     if (suggestedsquare.isPossibleSquare()){
-                        output.push(suggestedsquare)
+                        if(board.checkIfEmpty(suggestedsquare)){
+                            output.push(suggestedsquare)
+                        }
+                        else if(board.getPiece(suggestedsquare).player != this.player && board.getPiece(suggestedsquare).name != "King"){
+                            output.push(suggestedsquare)
+                            break
+                        }
+
+                        else {
+                            break
+                        }
                 }}
             }
             return output;
