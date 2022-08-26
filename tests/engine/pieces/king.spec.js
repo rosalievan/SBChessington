@@ -31,7 +31,6 @@ describe('King', () => {
 
         moves.should.have.length(8);
     });
-<<<<<<< HEAD
 
     it('cannot leave the board', () => {
         const king = new King(Player.WHITE);
@@ -43,6 +42,4 @@ describe('King', () => {
 
         moves.should.deep.have.members(expectedMoves);
     });
-=======
->>>>>>> 38202d9 (Added a test for king movement)
 });
