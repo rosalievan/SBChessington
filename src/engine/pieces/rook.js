@@ -18,22 +18,22 @@ export default class Rook extends Piece {
 
         for (let i = 0; i < GameSettings.BOARD_SIZE; i++) {
             if (i!= row){
-                if(board.checkIfEmpty(row+i, col)){
-                     output.push(Square.at(i, col));
+                let suggestedsquare1 = Square.at(i, col)
+                if(board.checkIfEmpty(suggestedsquare1)){
+                     output.push(suggestedsquare1);
                 }
-                return output;
+                else{
+                break}
             }
 
             if (i!= col){
-                if(board.checkIfEmpty(row, col+i)){
-                    output.push(Square.at(row, i));
-                }
-                return output;
-
-        }
-
-        
-        
-    }
+                let suggestedsquare2 = Square.at(row, i)
+                if(board.checkIfEmpty(suggestedsquare2)){
+                    output.push(suggestedsquare2);
+                } else {
+                    break
+                }}}
+            return output;  
+    
     }
 }
